@@ -2,6 +2,7 @@
 // useSelector hook is used to get data out of the store
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './Counter.module.css';
+import { counterActions } from '../store';
 
 const Counter = () => {
   const counter = useSelector(state => state.counter);
@@ -9,26 +10,17 @@ const Counter = () => {
   const dispatch = useDispatch();
  
   const incrementHandler = () => {
-    dispatch({
-      type: 'increment'
-    });
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch({
-      type: 'increase',
-      amount: 5  
-    });
+    dispatch(counterActions.increase(10)); // { type: SOME_UNIQUE_IDENTIFIER, payload: 10 }
   }
   const decrementHandler = () => {
-    dispatch({
-      type: 'decrement'
-    });
+    dispatch(counterActions.decrement());
   };
   const toggleCounterHandler = () => {
-    dispatch({
-      type: 'toggle'
-    });
+    dispatch(counterActions.toggleCounter());
   };
   return (
     <main className={classes.counter}>
